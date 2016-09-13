@@ -1,9 +1,93 @@
+#: set default_font_size 15
+#: set popup_width 350
+#: set popup_height 200
+#: set textinput_height 30
+
+[ListViewItem@SelectableView+BoxLayout]:
+	size_hint: (1.0, None)
+	height: 50
+
+	ListItemButton:
+		background_color: [0,1,1,0.5]
+		deselected_color: [0,1,1,0.5]
+		selected_color: [1,0,1,0.5]
+
+
+<AddNewStationPopup>:
+	width: popup_width
+	height: popup_height
+	size_hint: (None, None)
+	title: 'Enter station data:'
+	title_size: default_font_size
+
+	BoxLayout:
+		orientation: 'vertical'
+
+		BoxLayout:				
+			size_hint: (1.0, 0.5)
+			Label:
+				size_hint: (0.5, 1.0)
+				halign: 'left'
+				valign: 'middle'
+				texture_size: self.size
+				text_size: self.size
+				text: 'Display name:'
+				font_size: default_font_size
+			TextInput:
+				height: textinput_height
+				size_hint: (1.0, None)
+				pos_hint: {'center_y': 0.5}
+				font_size: default_font_size
+
+		BoxLayout:
+			size_hint: (1.0, 0.5)
+			Label:
+				size_hint: (0.5, 1.0)
+				halign: 'left'
+				valign: 'middle'
+				texture_size: self.size
+				text_size: self.size
+				text: 'Stream URL:'
+				font_size: default_font_size
+			TextInput:
+				height: textinput_height
+				size_hint: (1.0, None)
+				pos_hint: {'center_y': 0.5}
+				font_size: default_font_size
+
+		# empty space
+		Widget:
+			size_hint: (0.5, 0.1)
+
+		Widget:
+			size_hint: (0.5, 0.4)
+            Button:
+                width: self.parent.width * 2
+                height: self.parent.height
+                pos: self.parent.pos
+                text: 'Add'
+				font_size: default_font_size
+
+
 <PlayerScreen>:
 	orientation: 'vertical'
+	canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/background.jpg'
+
+	Button:
+		size_hint: (1.0, 0.15)
+		text: 'Add new radio station'
+		on_press: root.add_new_station(args)
 
 	# list of stations
-	Button:
+	ListView:
+		size_hint: (1.0, 1.0)
+        adapter: root.list_adapter 
 
+	# 'toolbar'
 	BoxLayout:
 		size_hint: (1.0, 0.2)
 
@@ -21,6 +105,11 @@
 		Button:
 
 		# volume slider
+		Button:
+			size_hint: (None, 1.0) 
+			width: self.height
+
+		# delete station
 		Button:
 			size_hint: (None, 1.0) 
 			width: self.height
