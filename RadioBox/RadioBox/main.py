@@ -1,12 +1,8 @@
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.uix.button import Button
-from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.selectableview import SelectableView
 from kivy.adapters.listadapter import ListAdapter
-from kivy.properties import ListProperty, StringProperty
 
 
 class AddNewStationPopup(Popup):
@@ -15,12 +11,14 @@ class AddNewStationPopup(Popup):
 
 class PlayerScreen(BoxLayout):
     def __init__(self, **kwargs):
-        stations = [format(i+2) for i in range(10)]
+        stations = [{'name':format(i), 
+                     'url':'http:\\ololo:1377{0}'.format(i)} 
+                     for i in range(10)]
         self.list_adapter = ListAdapter(data=stations, 
                                         args_converter=self.converter,
                                         selection_mode='single',
-                                        allow_empty_selection=False,
-                                        cls='ListViewItem')
+                                        allow_empty_selection=True,
+                                        cls='ListItem')
         self.list_adapter.bind(on_selection_change=self.selection_change)
         super(PlayerScreen, self).__init__(**kwargs)  
 
@@ -32,9 +30,11 @@ class PlayerScreen(BoxLayout):
             print "--------"
 
     def converter(self, row_index, row_data):
-        return {'row_index': row_index+1, 'text': row_data}    
+        return {'row_index': row_index+1, 
+                'name': row_data['name'],
+                'url': row_data['url']}    
 
-    def add_new_station(self, *args):
+    def open_new_station_popup(self, *args):
         AddNewStationPopup().open()
 
 

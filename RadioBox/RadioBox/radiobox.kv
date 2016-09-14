@@ -1,24 +1,44 @@
-#: set default_font_size 15
+#: set main_font_size 15
+#: set second_font_size 10
+
 #: set popup_width 350
 #: set popup_height 200
 #: set textinput_height 30
 
-[ListViewItem@SelectableView+BoxLayout]:
-	size_hint: (1.0, None)
-	height: 50
+#: set list_item_height 50
 
-	ListItemButton:
-		background_color: [0,1,1,0.5]
-		deselected_color: [0,1,1,0.5]
-		selected_color: [1,0,1,0.5]
+[ListItem@BoxLayout+ListItemButton]:
+    size_hint: (1.0, None)
+    height: list_item_height
+	background_color: [0,1,1,0.5]
+	deselected_color: [0,1,1,0.5]
+	selected_color: [1,0,1,0.5]
+
+    BoxLayout:
+        padding: 5
+        orientation: 'vertical'
+        Label:
+			halign: 'left'
+			valign: 'middle'
+			texture_size: self.size
+			text_size: self.size
+			text: "{0}. {1}".format(ctx.row_index, ctx.name)
+			font_size: main_font_size
+		Label:
+			halign: 'left'
+			valign: 'middle'
+			texture_size: self.size
+			text_size: self.size
+			text: format(ctx.url)
+			font_size: second_font_size
 
 
 <AddNewStationPopup>:
+	size_hint: (None, None)
 	width: popup_width
 	height: popup_height
-	size_hint: (None, None)
 	title: 'Enter station data:'
-	title_size: default_font_size
+	title_size: main_font_size
 
 	BoxLayout:
 		orientation: 'vertical'
@@ -32,12 +52,12 @@
 				texture_size: self.size
 				text_size: self.size
 				text: 'Display name:'
-				font_size: default_font_size
+				font_size: main_font_size
 			TextInput:
 				height: textinput_height
 				size_hint: (1.0, None)
 				pos_hint: {'center_y': 0.5}
-				font_size: default_font_size
+				font_size: main_font_size
 
 		BoxLayout:
 			size_hint: (1.0, 0.5)
@@ -48,12 +68,12 @@
 				texture_size: self.size
 				text_size: self.size
 				text: 'Stream URL:'
-				font_size: default_font_size
+				font_size: main_font_size
 			TextInput:
 				height: textinput_height
 				size_hint: (1.0, None)
 				pos_hint: {'center_y': 0.5}
-				font_size: default_font_size
+				font_size: main_font_size
 
 		# empty space
 		Widget:
@@ -66,7 +86,7 @@
                 height: self.parent.height
                 pos: self.parent.pos
                 text: 'Add'
-				font_size: default_font_size
+				font_size: main_font_size
 
 
 <PlayerScreen>:
@@ -77,14 +97,15 @@
             size: self.size
             source: 'images/background.jpg'
 
+	# add new station button
 	Button:
 		size_hint: (1.0, 0.15)
 		text: 'Add new radio station'
-		on_press: root.add_new_station(args)
+		font_size: main_font_size
+		on_press: root.open_new_station_popup(args)
 
 	# list of stations
 	ListView:
-		size_hint: (1.0, 1.0)
         adapter: root.list_adapter 
 
 	# 'toolbar'
