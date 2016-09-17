@@ -1,8 +1,7 @@
 import os
-from tempfile import gettempdir
 
 
-radiobox_directory_name = 'RadioBox'
+radiobox_directory_path = ''
 radiobox_stations_save_file_name = 'stations.m3u'
 
 
@@ -26,13 +25,11 @@ def _get_stations_save_file_path():
         path to stations file as string.
     """
 
-    # get radiobox directory
-    radiobox_full_dir = os.path.join(gettempdir(), radiobox_directory_name)
     # create if not exist
-    if not os.path.exists(radiobox_full_dir):
-        os.makedirs(radiobox_full_dir)
+    if not os.path.exists(radiobox_directory_path):
+        os.makedirs(radiobox_directory_path)
     # full path to file
-    stations_file_path = os.path.join(radiobox_full_dir, radiobox_stations_save_file_name)
+    stations_file_path = os.path.join(radiobox_directory_path, radiobox_stations_save_file_name)
 
     return stations_file_path
 
