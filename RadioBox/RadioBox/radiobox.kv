@@ -2,10 +2,10 @@
 #: set second_font_size 10
 
 #: set popup_width 350
-#: set popup_height 200
+#: set popup_height 250
 #: set textinput_height 30
-
 #: set list_item_height 50
+
 
 [ListItem@BoxLayout+ListItemButton]:
     size_hint: (1.0, None)
@@ -22,7 +22,7 @@
 			valign: 'middle'
 			texture_size: self.size
 			text_size: self.size
-			text: "{0}. {1}".format(ctx.row_index, ctx.name)
+			text: "{0}. {1}".format(ctx.row_number, ctx.name)
 			font_size: main_font_size
 		Label:
 			halign: 'left'
@@ -43,8 +43,9 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		BoxLayout:				
-			size_hint: (1.0, 0.5)
+		BoxLayout:	
+			id: name_box			
+			size_hint: (1.0, 0.2)
 			Label:
 				size_hint: (0.5, 1.0)
 				halign: 'left'
@@ -54,13 +55,16 @@
 				text: 'Display name:'
 				font_size: main_font_size
 			TextInput:
+				id: name_textinput
 				height: textinput_height
 				size_hint: (1.0, None)
 				pos_hint: {'center_y': 0.5}
 				font_size: main_font_size
+				on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
 
 		BoxLayout:
-			size_hint: (1.0, 0.5)
+			id: url_box	
+			size_hint: (1.0, 0.2)
 			Label:
 				size_hint: (0.5, 1.0)
 				halign: 'left'
@@ -70,67 +74,112 @@
 				text: 'Stream URL:'
 				font_size: main_font_size
 			TextInput:
+				id: url_textinput
 				height: textinput_height
 				size_hint: (1.0, None)
 				pos_hint: {'center_y': 0.5}
 				font_size: main_font_size
+				on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
 
-		# empty space
-		Widget:
-			size_hint: (0.5, 0.1)
-
-		Widget:
-			size_hint: (0.5, 0.4)
-            Button:
-                width: self.parent.width * 2
-                height: self.parent.height
-                pos: self.parent.pos
-                text: 'Add'
+		# drag and drop zone
+		Label:
+			size_hint: (1.0, 0.15)
+			halign: 'center'
+			valign: 'middle'
+			texture_size: self.size
+			text_size: self.size
+			text: 'or'
+			font_size: main_font_size
+		BoxLayout:
+			canvas.before:
+				Color:
+					rgba: 0.5,0.5,0.5,0.5
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			size_hint: (1.0, 0.3)
+			Label:
+				id: drop_file_text
+				size_hint: (0.8, 1.0)
+				halign: 'center'
+				valign: 'middle'
+				texture_size: self.size
+				text_size: self.size
 				font_size: main_font_size
+			Button:
+				id: del_drop_file
+				size_hint: (0.1, 0.5)
+				pos_hint: {'center_y': 0.5}
+				on_release: if self.collide_point(*root.parent.mouse_pos): root.refresh_popup_content(args)
+
+        Button:
+			size_hint: (1.0, 0.15)
+            width: self.parent.width * 2
+            height: self.parent.height
+            pos: self.parent.pos
+            text: 'Add'
+			font_size: main_font_size
+			on_release: 
+				if not self.collide_point(*root.parent.mouse_pos): pass
+				elif root.is_add_from_file: root.add_new_station_from_file(drop_file_text.text)
+				elif name_textinput.text == '': name_textinput.background_normal = 'images/textinput_error.png'
+				elif url_textinput.text == '': url_textinput.background_normal = 'images/textinput_error.png'
+				else: root.add_new_station(name_textinput.text, url_textinput.text)
 
 
 <PlayerScreen>:
-	orientation: 'vertical'
 	canvas.before:
-        Rectangle:
-            pos: self.pos
-            size: self.size
-            source: 'images/background.jpg'
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'images/background.jpg'
 
-	# add new station button
-	Button:
-		size_hint: (1.0, 0.15)
-		text: 'Add new radio station'
+	Label:
+		halign: 'center'
+		valign: 'middle'
+		texture_size: self.size
+		text_size: self.size
+		text: 'Your radio stations list is empty!' if len(stations_list.adapter.data)==0 else ''
 		font_size: main_font_size
-		on_press: root.open_new_station_popup(args)
 
-	# list of stations
-	ListView:
-        adapter: root.list_adapter 
-
-	# 'toolbar'
 	BoxLayout:
-		size_hint: (1.0, 0.2)
+		orientation: 'vertical'
 
-		# play/stop button
+		# add new station button
 		Button:
-			size_hint: (None, 1.0) 
-			width: self.height
+			size_hint: (1.0, 0.15)
+			text: 'Add new radio station'
+			font_size: main_font_size
+			on_release: if self.collide_point(*root.parent.mouse_pos): root.open_new_station_popup(args)
 
-		# cover image
-		Button:
-			size_hint: (None, 1.0) 
-			width: self.height
+		# list of stations
+		ListView:
+			id: stations_list
+			adapter: root.list_adapter 
 
-		# title
-		Button:
+		# 'toolbar'
+		BoxLayout:
+			size_hint: (1.0, 0.2)
 
-		# volume slider
-		Button:
-			size_hint: (None, 1.0) 
-			width: self.height
+			# play/stop button
+			Button:
+				size_hint: (None, 1.0) 
+				width: self.height
 
-		# delete station
-		Button:
-			size_hint: (None, 1.0) 
-			width: self.height
+			# cover image
+			Button:
+				size_hint: (None, 1.0) 
+				width: self.height
+
+			# title
+			Button:
+
+			# volume slider
+			Button:
+				size_hint: (None, 1.0) 
+				width: self.height
+
+			# delete station
+			Button:
+				size_hint: (None, 1.0) 
+				width: self.height
