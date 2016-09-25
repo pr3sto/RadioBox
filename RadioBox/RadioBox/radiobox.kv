@@ -25,6 +25,7 @@
 			text: "{0}. {1}".format(ctx.row_number, ctx.name)
 			font_size: main_font_size
 		Label:
+			id: url_label
 			halign: 'left'
 			valign: 'middle'
 			texture_size: self.size
@@ -125,6 +126,32 @@
 				elif name_textinput.text == '': name_textinput.background_normal = 'images/textinput_error.png'
 				elif url_textinput.text == '': url_textinput.background_normal = 'images/textinput_error.png'
 				else: root.add_new_station(name_textinput.text, url_textinput.text)
+
+
+<ErrorMessagePopup>:
+	size_hint: (None, None)
+	width: popup_width
+	height: popup_height
+	title: 'Error:'
+	title_size: main_font_size
+
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			size_hint: (1.0, 0.7)
+			halign: 'center'
+			valign: 'middle'
+			texture_size: self.size
+			text_size: self.size
+			text: root.error_message
+			font_size: main_font_size
+		Button:
+			size_hint: (0.5, 0.2)
+			pos_hint: {'center_x': 0.5}
+			text: 'Ok'
+			font_size: main_font_size
+			on_release: 
+				if self.collide_point(*root.parent.mouse_pos): root.dismiss()
 
 
 <PlayerScreen>:

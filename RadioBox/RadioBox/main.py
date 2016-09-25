@@ -1,3 +1,7 @@
+import kivy
+kivy.require('1.9.1')
+
+#kivy components
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
@@ -5,6 +9,10 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.adapters.listadapter import ListAdapter
 from kivy.properties import StringProperty
 
+# for playing streams
+import vlc
+
+# for working with stations
 import stationutils
 
 
@@ -47,20 +55,34 @@ class AddNewStationPopup(Popup):
         self.ids.url_box.disabled = False
 
 
+class ErrorMessagePopup(Popup):
+    def __init__(self, error_messgage, **kwargs):
+        self.error_message = error_messgage
+        super(ErrorMessagePopup, self).__init__(**kwargs)
+
+
 class PlayerScreen(FloatLayout):
     def __init__(self, list_adapter, **kwargs):
         self.list_adapter = list_adapter
-        self.list_adapter.bind(on_selection_change=self.selection_change)
-        self.add_new_station_popup = None # declare
+        self.list_adapter.bind(on_selection_change=self.station_changed)
         super(PlayerScreen, self).__init__(**kwargs)  
+        
+        self.add_new_station_popup = None
+        self.player = vlc.MediaPlayer()
 
-    def selection_change(self, adapter, *args):
+    def station_changed(self, adapter, *args):
         if (adapter.selection):
-            print "--------" 
-            print adapter.selection
-            print adapter.selection[0].is_selected
-            print "--------"
-            adapter.data.pop()
+            self.player.stop()
+            self.player.set_mrl(adapter.selection[0].ids.ctx.url)
+            self.player.get_media().event_manager().event_attach(
+                vlc.EventType.MediaStateChanged, self.media_state_changed, adapter.selection[0].ids.ctx.name)
+            self.player.play()
+            Window.set_title('RadioBox - {0}'.format(adapter.selection[0].ids.ctx.name))
+
+    def media_state_changed(self, event, name):
+        if self.player.get_state() == vlc.State.Error:
+            err_msg = 'Error playing stream \'{0}\''.format(name)
+            ErrorMessagePopup(err_msg).open()
 
     def open_new_station_popup(self, *args):
         if self.add_new_station_popup is None:
