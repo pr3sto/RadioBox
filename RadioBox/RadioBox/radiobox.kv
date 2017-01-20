@@ -111,7 +111,7 @@
 				id: del_drop_file
 				size_hint: (0.1, 0.5)
 				pos_hint: {'center_y': 0.5}
-				on_release: if self.collide_point(*root.parent.mouse_pos): root.refresh_popup_content(args)
+				on_release: root.refresh_popup_content(args)
 
         Button:
 			size_hint: (1.0, 0.15)
@@ -121,8 +121,7 @@
             text: 'Add'
 			font_size: main_font_size
 			on_release: 
-				if not self.collide_point(*root.parent.mouse_pos): pass
-				elif root.is_add_from_file: root.add_new_station_from_file(drop_file_text.text)
+				if root.is_add_from_file: root.add_new_station_from_file(drop_file_text.text)
 				elif name_textinput.text == '': name_textinput.background_normal = 'images/textinput_error.png'
 				elif url_textinput.text == '': url_textinput.background_normal = 'images/textinput_error.png'
 				else: root.add_new_station(name_textinput.text, url_textinput.text)
@@ -150,8 +149,7 @@
 			pos_hint: {'center_x': 0.5}
 			text: 'Ok'
 			font_size: main_font_size
-			on_release: 
-				if self.collide_point(*root.parent.mouse_pos): root.dismiss()
+			on_release: root.dismiss()
 
 
 <PlayerScreen>:
@@ -177,7 +175,7 @@
 			size_hint: (1.0, 0.15)
 			text: 'Add new radio station'
 			font_size: main_font_size
-			on_release: if self.collide_point(*root.parent.mouse_pos): root.open_new_station_popup(args)
+			on_release: root.open_new_station_popup(args)
 
 		# list of stations
 		ListView:

@@ -23,12 +23,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.py" />
-    <Compile Include="stationutils.py">
+    <Compile Include="player\player.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="player\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="stationutils\stationutils.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="stationutils\__init__.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="radiobox.kv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="player\" />
+    <Folder Include="stationutils\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

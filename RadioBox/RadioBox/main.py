@@ -1,19 +1,21 @@
 import kivy
 kivy.require('1.9.1')
 
+#fix bug with openGL
+from kivy import Config
+Config.set('graphics', 'multisamples', '0')
+
 #kivy components
 from kivy.app import App
+from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 from kivy.uix.floatlayout import FloatLayout
 from kivy.adapters.listadapter import ListAdapter
 from kivy.properties import StringProperty
 
-# for playing streams
-import vlc
-
-# for working with stations
-import stationutils
+from stationutils import *
+from player import *
 
 
 class AddNewStationPopup(Popup):
@@ -29,11 +31,11 @@ class AddNewStationPopup(Popup):
         self.refresh_popup_content()
 
     def add_new_station(self, name, url, *args):
-        self.list_adapter.data.append(stationutils.Station(name, url))
+        self.list_adapter.data.append(Station(name, url))
         self.dismiss()
     
     def add_new_station_from_file(self, file_path, *args):
-        stations = stationutils.get_stations_list_from_file(file_path)
+        stations = StationUtils.get_stations_list_from_file(file_path)
         self.list_adapter.data.extend(stations)
         self.dismiss()
 
@@ -64,41 +66,42 @@ class ErrorMessagePopup(Popup):
 class PlayerScreen(FloatLayout):
     def __init__(self, list_adapter, **kwargs):
         self.list_adapter = list_adapter
-        self.list_adapter.bind(on_selection_change=self.station_changed)
+        self.list_adapter.bind(on_selection_change=self.change_station)
         super(PlayerScreen, self).__init__(**kwargs)  
         
         self.add_new_station_popup = None
-        self.player = vlc.MediaPlayer()
 
-    def station_changed(self, adapter, *args):
+        self.player = Player()
+        self.player.set_error_callback(self.show_error)   
+
+    def change_station(self, adapter, *args):
         if (adapter.selection):
-            self.player.stop()
-            self.player.set_mrl(adapter.selection[0].ids.ctx.url)
-            self.player.get_media().event_manager().event_attach(
-                vlc.EventType.MediaStateChanged, self.media_state_changed, adapter.selection[0].ids.ctx.name)
+            self.player.set_station(adapter.selection[0].ids.ctx)
             self.player.play()
             Window.set_title('RadioBox - {0}'.format(adapter.selection[0].ids.ctx.name))
 
-    def media_state_changed(self, event, name):
-        if self.player.get_state() == vlc.State.Error:
-            err_msg = 'Error playing stream \'{0}\''.format(name)
-            ErrorMessagePopup(err_msg).open()
+    def change_state(self):
+        pass
+
+    def show_error(self, stream_name):
+        err_msg = 'Error playing stream \'{0}\''.format(stream_name)
+        ErrorMessagePopup(err_msg).open()
 
     def open_new_station_popup(self, *args):
         if self.add_new_station_popup is None:
             self.add_new_station_popup = AddNewStationPopup(self.list_adapter)
         self.add_new_station_popup.open()
-    
+
 
 class RadioBoxApp(App):
     def build(self):
         self.title = 'RadioBox'
         
         # set app directory path
-        stationutils.radiobox_directory_path = self.user_data_dir
+        StationUtils.radiobox_directory_path = self.user_data_dir
         
         # load stations
-        saved_stations = stationutils.get_saved_stations_list()
+        saved_stations = StationUtils.get_saved_stations_list()
         for i in range(len(saved_stations)):
             if saved_stations[i].name == '':
                 saved_stations[i].name = 'station #{0}'.format(i+1)
@@ -131,7 +134,7 @@ class RadioBoxApp(App):
         }
 
     def save_stations(self, *args):
-        stationutils.save_stations_list(self.list_adapter.data)
+        StationUtils.save_stations_list(self.list_adapter.data)
 
 
 if __name__ == "__main__":

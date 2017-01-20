@@ -1,0 +1,137 @@
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 a06575b2-ac12-4b7d-92e5-e57521258367 "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/163738:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: http://kivy.org
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/163738:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/163738:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+cefpython: Shutdown()
+cefpython: del g_pyBrowsers[1]
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 a2ccc21f-ba79-4935-8d8c-5106991738aa "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/163755:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: http://kivy.org
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/163755:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/163755:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/163759:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/163759:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/163759:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: del g_pyBrowsers[1]
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 339cd413-cb55-4d5c-8014-b6e4a8d2fee1 "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/163818:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: https://www.google.ru/
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/163818:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/163818:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/163848:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/163848:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/163848:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 e461fae4-d894-4c73-9302-2c32441d1a19 "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/163903:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: https://www.google.ru/
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/163903:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/163903:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/163905:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/163905:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/163905:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: del g_pyBrowsers[1]
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 d02ec844-cd76-49f0-81b7-bbdf82e246f7 "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/164006:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: https://www.google.ru/
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/164006:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/164006:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/164009:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/164009:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/164009:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: del g_pyBrowsers[1]
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 8da6471d-b6e3-43ac-8694-125e0b474ce8 "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/164053:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: http://kivy.org
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/164053:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/164053:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/164059:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/164059:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/164059:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: del g_pyBrowsers[1]
+cefpython: ------------------------------------------------------------
+cefpython: Initialize() called
+cefpython: CefExecuteProcess(): exitCode = -1
+cefpython: CefInitialize()
+cefpython: App_OnBeforeCommandLineProcessing_BrowserProcess()
+cefpython_app: Command line: "C:\Python27\python.exe" --browser-subprocess-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\subprocess.exe" --lang=en-US --log-file=debug.log --log-severity=info --enable-release-dcheck --resources-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2" --locales-dir-path="C:\Users\�������\.kivy\garden\garden.cefpython\libs\win32.py2\locales" --no-sandbox "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Python Tools for Visual Studio\2.2\visualstudio_py_launcher.py" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox" 60105 b46f8596-6967-4bc3-a260-d3b2787a0f4c "WaitOnAbnormalExit, WaitOnNormalExit, RedirectOutput" "D:\GoogleDrive\учеба\Projects\ProjectRadioBox\RadioBox\RadioBox\main.py"
+[1120/164112:ERROR_REPORT:main_delegate.cc(457)] Check failed: false. Could not load cef.pak
+cefpython: CreateBrowserSync() called
+cefpython: navigateUrl: http://kivy.org
+cefpython: CefBrowser::CreateBrowserSync()
+cefpython: GetPyBrowser(): creating new PyBrowser, browserId=1
+cefpython: BrowserProcessHandler_OnBeforeChildProcessLaunch()
+[1120/164112:ERROR_REPORT:render_widget_host_view_osr.cc(268)] Check failed: false. 
+cefpython: CefBrowser::CreateBrowserSync() succeeded
+cefpython: SendProcessMessage(): message=DoJavascriptBindings, arguments size=1
+[1120/164112:ERROR:child_process_launcher.cc(326)] Failed to launch child process
+[1120/164121:ERROR_REPORT:context.cc(266)] Check failed: OnInitThread(). 
+[1120/164121:ERROR_REPORT:context.cc(366)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+[1120/164121:ERROR_REPORT:browser_host_impl.cc(1128)] Check failed: CEF_CURRENTLY_ON(content::BrowserThread::UI). 
+cefpython: del g_pyBrowsers[1]
