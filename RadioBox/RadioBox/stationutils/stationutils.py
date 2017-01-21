@@ -2,7 +2,7 @@ import os
 
 
 class Station:
-    """Represent radio station
+    """Represent radio station.
 
     Args:
         name (str): name of radio station.
@@ -15,6 +15,8 @@ class Station:
 
 
 class StationUtils:
+    """Helper class for working with stations."""
+
     radiobox_directory_path = ''
     radiobox_stations_save_file_name = 'stations.m3u'
 

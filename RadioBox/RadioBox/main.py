@@ -73,24 +73,33 @@ class PlayerScreen(FloatLayout):
 
         self.player = Player()
         self.player.set_error_callback(self.show_error)   
-
-    def change_station(self, adapter, *args):
-        if (adapter.selection):
-            self.player.set_station(adapter.selection[0].ids.ctx)
-            self.player.play()
-            Window.set_title('RadioBox - {0}'.format(adapter.selection[0].ids.ctx.name))
-
-    def change_state(self):
-        pass
-
-    def show_error(self, stream_name):
-        err_msg = 'Error playing stream \'{0}\''.format(stream_name)
-        ErrorMessagePopup(err_msg).open()
+        self.player.set_title_recieved_callback(self.update_title)
 
     def open_new_station_popup(self, *args):
         if self.add_new_station_popup is None:
             self.add_new_station_popup = AddNewStationPopup(self.list_adapter)
         self.add_new_station_popup.open()
+
+    def change_station(self, adapter, *args):
+        if (adapter.selection):
+            self.player.set_station(adapter.selection[0].ids.ctx)
+            Window.set_title('RadioBox - {0}'.format(adapter.selection[0].ids.ctx.name))
+
+    def change_state(self):
+        if self.player.is_playing():
+            self.player.stop()
+        else:
+            self.player.play()
+
+    def tmp(self):
+        self.player.get_stream_title()
+
+    def show_error(self, stream_name):
+        err_msg = 'Error playing stream \'{0}\''.format(stream_name)
+        ErrorMessagePopup(err_msg).open()
+
+    def update_title(self, title):
+        print title
 
 
 class RadioBoxApp(App):

@@ -190,6 +190,7 @@
 			Button:
 				size_hint: (None, 1.0) 
 				width: self.height
+				on_release: root.change_state()
 
 			# cover image
 			Button:
@@ -198,6 +199,7 @@
 
 			# title
 			Button:
+				on_release: root.tmp()
 
 			# volume slider
 			Button:
