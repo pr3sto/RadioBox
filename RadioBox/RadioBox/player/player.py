@@ -1,7 +1,7 @@
 import vlc
 import urllib2
 import threading
- 
+
 
 class Player:
     """Represent radio Player."""
@@ -9,8 +9,8 @@ class Player:
     def __init__(self):
         self.vlc_player = vlc.MediaPlayer()
         self.current_station = None
-        self.error_callback = None    
-        self.title_recieved_callback = None    
+        self.error_callback = None
+        self.title_recieved_callback = None
 
     def play(self):
         """Play radio station if it is setted."""
@@ -26,12 +26,12 @@ class Player:
 
     def set_station(self, station):
         """Set station given in parameter.
-    
+
         Args:
             station (Station): station to set.
         """
 
-        self.current_station = station        
+        self.current_station = station
 
         if self.is_playing():
             self.stop()
@@ -43,10 +43,10 @@ class Player:
             self.vlc_player.set_mrl(self.current_station.url)
             self.vlc_player.get_media().event_manager().event_attach(
                 vlc.EventType.MediaStateChanged, self._media_state_changed)
-        
+
     def set_error_callback(self, callback):
         """Set callback when error appearin playing station.
-    
+
         Args:
             callback (func): callback to set.
         """
@@ -55,7 +55,7 @@ class Player:
 
     def set_title_recieved_callback(self, callback):
         """Set callback when station title received.
-    
+
         Args:
             callback (func): callback to set.
         """
@@ -64,16 +64,21 @@ class Player:
 
     def set_volume(self, value):
         """Set audio volume.
-    
+
         Args:
             value (int): volume value.
         """
 
-        if 0 <= value <= 100: 
+        if 0 <= value <= 100:
             self.vlc_player.audio_set_volume(value)
 
     def is_playing(self):
-        """Set audio volume."""
+        """Is music playing.
+
+        Returns:
+            true - if music playing, false - otherwise.
+        """
+
         return self.vlc_player.get_state() == vlc.State.Playing
 
     def get_stream_title(self):
@@ -84,7 +89,7 @@ class Player:
 
     def _media_state_changed(self, event):
         """Callback on state changed event.
-    
+
         Args:
             event (Event): Event instance.
         """
@@ -111,6 +116,9 @@ class Player:
 
                 if self.title_recieved_callback is not None:
                     self.title_recieved_callback(title)
+            else:
+                if self.title_recieved_callback is not None:
+                    self.title_recieved_callback(' - ')
         except:
             if self.title_recieved_callback is not None:
                 self.title_recieved_callback(' - ')
