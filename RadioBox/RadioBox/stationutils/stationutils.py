@@ -23,7 +23,7 @@ class StationUtils:
     @staticmethod
     def _get_stations_save_file_path():
         """Forms path to stations file.
-    
+
         Returns:
             path to stations file as string.
         """
@@ -39,7 +39,7 @@ class StationUtils:
     @staticmethod
     def get_saved_stations_list():
         """Gets list of saved stations from save file.
-    
+
         Returns:
             list of Station objects.
         """
@@ -49,7 +49,7 @@ class StationUtils:
     @staticmethod
     def get_stations_list_from_file(stations_file_path):
         """Gets list of stations from given file.
-    
+
         Args:
             stations_file_path (str): path to m3u file.
 
@@ -62,7 +62,7 @@ class StationUtils:
             with open(stations_file_path, 'r') as f:
                 while True:
                     line = f.next().strip()
-                
+
                     if line == '':
                         continue
                     # m3u header
@@ -88,7 +88,7 @@ class StationUtils:
     @staticmethod
     def save_stations_list(stations):
         """Saves stations to save file.
-    
+
         Args:
             stations (list(Station)): list of Station objects.
         """
