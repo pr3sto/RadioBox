@@ -48,7 +48,7 @@ class RadioBoxApp(App):
             'row_number': row_index+1,
             'name': row_data.name,
             'url': row_data.url,
-            'f': delete_station
+            'func': delete_station
         }
 
     def save_stations_to_file(self, *args):

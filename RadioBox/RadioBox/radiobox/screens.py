@@ -22,9 +22,7 @@ class PlayerScreen(FloatLayout):
         self.player.set_volume(50)
         self.player.set_error_callback(self._show_error)
         self.player.set_title_recieved_callback(self._update_title)
-
-        self.is_playing = property()
-        self.is_playing = self.is_playing.getter(self.player.is_playing)
+        self.player.set_media_state_changed_callback(self._media_state_update)
 
         self.title_update_sheduler = sched.scheduler(time.time, time.sleep)
 
@@ -64,3 +62,9 @@ class PlayerScreen(FloatLayout):
 
     def _update_title(self, title):
         self.ids.title_text.text = title
+
+    def _media_state_update(self, state):
+        if self.player.is_playing():
+            self.ids.play_button.background_normal = 'resources/images/stop_button_normal.png'
+        else:
+            self.ids.play_button.background_normal = 'resources/images/play_button_normal.png'

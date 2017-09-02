@@ -11,6 +11,7 @@ class Player:
         self.current_station = None
         self.error_callback = None
         self.title_recieved_callback = None
+        self.media_state_changed_callback = None
 
     def play(self):
         """Play radio station if it is setted."""
@@ -62,6 +63,15 @@ class Player:
 
         self.title_recieved_callback = callback
 
+    def set_media_state_changed_callback(self, callback):
+        """Set callback when media state changed.
+
+        Args:
+            callback (func): callback to set.
+        """
+
+        self.media_state_changed_callback = callback
+
     def set_volume(self, value):
         """Set audio volume.
 
@@ -93,6 +103,9 @@ class Player:
         Args:
             event (Event): Event instance.
         """
+
+        if self.media_state_changed_callback is not None:
+            self.media_state_changed_callback(self.vlc_player.get_state())
 
         if self.vlc_player.get_state() == vlc.State.Error:
             if (self.error_callback is not None):

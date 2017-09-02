@@ -53,7 +53,7 @@
         HoverButton:
             size_hint: (None, 1.0)
             width: self.height
-            on_release: ctx.f(ctx.row_number)
+            on_release: ctx.func(ctx.row_number)
 
 
 <AddNewStationPopup>:
@@ -223,18 +223,19 @@
 
             # play/stop button
             HoverButton:
+                id: play_button
                 size_hint: (None, 1.0)
                 width: self.height
                 background_normal: 'resources/images/play_button_normal.png'
                 background_down: 'resources/images/pressed_button.png'
                 on_enter:
-                    if root.is_playing: self.background_normal = 'resources/images/stop_button_hover.png'
+                    if root.player.is_playing(): self.background_normal = 'resources/images/stop_button_hover.png'
                     else: self.background_normal = 'resources/images/play_button_hover.png'
                 on_leave:
-                    if root.is_playing: self.background_normal = 'resources/images/stop_button_normal.png'
+                    if root.player.is_playing(): self.background_normal = 'resources/images/stop_button_normal.png'
                     else: self.background_normal = 'resources/images/play_button_normal.png'
                 on_release:
-                    if root.is_playing: self.background_normal = 'resources/images/stop_button_normal.png'
+                    if root.player.is_playing(): self.background_normal = 'resources/images/stop_button_normal.png'
                     else: self.background_normal = 'resources/images/play_button_normal.png'
                     root.change_state()
 
