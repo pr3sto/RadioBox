@@ -30,6 +30,24 @@
     <Compile Include="player\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="radiobox\app.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="radiobox\behaviors.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="radiobox\buttons.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="radiobox\popups.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="radiobox\screens.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="radiobox\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="stationutils\stationutils.py">
       <SubType>Code</SubType>
     </Compile>
@@ -38,7 +56,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="radiobox.kv" />
+    <Content Include="radiobox\radiobox.kv" />
     <Content Include="resources\images\play_button_hover.png" />
     <Content Include="resources\images\play_button_normal.png" />
     <Content Include="resources\images\pressed_button.png" />
@@ -53,6 +71,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="radiobox\" />
     <Folder Include="resources\" />
     <Folder Include="player\" />
     <Folder Include="resources\images\" />
