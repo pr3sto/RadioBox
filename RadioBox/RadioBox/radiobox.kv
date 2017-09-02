@@ -1,212 +1,266 @@
-#: set main_font_size 15
-#: set second_font_size 10
+#: set font_roboto 'resources/fonts/Roboto Regular.ttf'
+#: set font_roboto_light 'resources/fonts/Roboto Light.ttf'
+#: set font_size_main 15
+#: set font_size_second 12
+
+#: set color_background 0.11765, 0.11765, 0.11765, 1
+#: set color_button_background_normal 0.20784, 0.20784, 0.20784, 1
+#: set color_button_background_hover 0.25098, 0.25098, 0.25098, 1
+#: set color_special_normal 0.90588, 0.29804, 0.23529, 1
+#: set color_special_hover 0.94902, 0.34118, 0.27843, 1
 
 #: set popup_width 350
 #: set popup_height 250
 #: set textinput_height 30
 #: set list_item_height 50
+#: set button_height 40
 
 
-[ListItem@BoxLayout+ListItemButton]:
+[ListItem@BoxLayout+ListItemButton+HoverBehavior]:
     size_hint: (1.0, None)
+    border: 10, 10, 10, 10
     height: list_item_height
-	background_color: [0,1,1,0.5]
-	deselected_color: [0,1,1,0.5]
-	selected_color: [1,0,1,0.5]
+    background_normal: ''
+    background_down: ''
+    background_color: color_button_background_normal
+    deselected_color: color_button_background_normal
+    selected_color: color_special_normal
 
     BoxLayout:
-        padding: 5
-        orientation: 'vertical'
-        Label:
-			halign: 'left'
-			valign: 'middle'
-			texture_size: self.size
-			text_size: self.size
-			text: "{0}. {1}".format(ctx.row_number, ctx.name)
-			font_size: main_font_size
-		Label:
-			id: url_label
-			halign: 'left'
-			valign: 'middle'
-			texture_size: self.size
-			text_size: self.size
-			text: format(ctx.url)
-			font_size: second_font_size
+        orientation: 'horizontal'
+
+        BoxLayout:
+            padding: 5
+            orientation: 'vertical'
+            Label:
+                halign: 'left'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                text: "{0}. {1}".format(ctx.row_number, ctx.name)
+                font_name: font_roboto
+                font_size: font_size_main
+            Label:
+                id: url_label
+                halign: 'left'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                text: format(ctx.url)
+                font_name: font_roboto_light
+                font_size: font_size_second
+
+        HoverButton:
+            size_hint: (None, 1.0)
+            width: self.height
+            on_release: ctx.f(ctx.row_number)
 
 
 <AddNewStationPopup>:
-	size_hint: (None, None)
-	width: popup_width
-	height: popup_height
-	title: 'Enter station data:'
-	title_size: main_font_size
+    size_hint: (None, None)
+    width: popup_width
+    height: popup_height
+    title: 'Enter station data:'
+    title_size: font_size_main
 
-	BoxLayout:
-		orientation: 'vertical'
+    BoxLayout:
+        orientation: 'vertical'
 
-		BoxLayout:	
-			id: name_box			
-			size_hint: (1.0, 0.2)
-			Label:
-				size_hint: (0.5, 1.0)
-				halign: 'left'
-				valign: 'middle'
-				texture_size: self.size
-				text_size: self.size
-				text: 'Display name:'
-				font_size: main_font_size
-			TextInput:
-				id: name_textinput
-				height: textinput_height
-				size_hint: (1.0, None)
-				pos_hint: {'center_y': 0.5}
-				font_size: main_font_size
-				on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
+        BoxLayout:
+            id: name_box
+            size_hint: (1.0, 0.2)
+            Label:
+                size_hint: (0.5, 1.0)
+                halign: 'left'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                text: 'Display name:'
+                font_size: font_size_main
+            TextInput:
+                id: name_textinput
+                height: textinput_height
+                size_hint: (1.0, None)
+                pos_hint: {'center_y': 0.5}
+                font_size: font_size_main
+                on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
 
-		BoxLayout:
-			id: url_box	
-			size_hint: (1.0, 0.2)
-			Label:
-				size_hint: (0.5, 1.0)
-				halign: 'left'
-				valign: 'middle'
-				texture_size: self.size
-				text_size: self.size
-				text: 'Stream URL:'
-				font_size: main_font_size
-			TextInput:
-				id: url_textinput
-				height: textinput_height
-				size_hint: (1.0, None)
-				pos_hint: {'center_y': 0.5}
-				font_size: main_font_size
-				on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
+        BoxLayout:
+            id: url_box
+            size_hint: (1.0, 0.2)
+            Label:
+                size_hint: (0.5, 1.0)
+                halign: 'left'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                text: 'Stream URL:'
+                font_size: font_size_main
+            TextInput:
+                id: url_textinput
+                height: textinput_height
+                size_hint: (1.0, None)
+                pos_hint: {'center_y': 0.5}
+                font_size: font_size_main
+                on_focus: self.background_normal = 'atlas://data/images/defaulttheme/textinput'
 
-		# drag and drop zone
-		Label:
-			size_hint: (1.0, 0.15)
-			halign: 'center'
-			valign: 'middle'
-			texture_size: self.size
-			text_size: self.size
-			text: 'or'
-			font_size: main_font_size
-		BoxLayout:
-			canvas.before:
-				Color:
-					rgba: 0.5,0.5,0.5,0.5
-				Rectangle:
-					pos: self.pos
-					size: self.size
-			size_hint: (1.0, 0.3)
-			Label:
-				id: drop_file_text
-				size_hint: (0.8, 1.0)
-				halign: 'center'
-				valign: 'middle'
-				texture_size: self.size
-				text_size: self.size
-				font_size: main_font_size
-			Button:
-				id: del_drop_file
-				size_hint: (0.1, 0.5)
-				pos_hint: {'center_y': 0.5}
-				on_release: root.refresh_popup_content(args)
+        # drag and drop zone
+        Label:
+            size_hint: (1.0, 0.15)
+            halign: 'center'
+            valign: 'middle'
+            texture_size: self.size
+            text_size: self.size
+            text: 'or'
+            font_size: font_size_main
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba: 0.5,0.5,0.5,0.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size_hint: (1.0, 0.3)
+            Label:
+                id: drop_file_text
+                size_hint: (0.8, 1.0)
+                halign: 'center'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                font_size: font_size_main
+            HoverButton:
+                id: del_drop_file
+                size_hint: (0.1, 0.5)
+                pos_hint: {'center_y': 0.5}
+                on_release: root.refresh_popup_content(args)
 
-        Button:
-			size_hint: (1.0, 0.15)
+        HoverButton:
+            size_hint: (1.0, 0.15)
             width: self.parent.width * 2
             height: self.parent.height
             pos: self.parent.pos
             text: 'Add'
-			font_size: main_font_size
-			on_release: 
-				if root.is_add_from_file: root.add_new_station_from_file(drop_file_text.text)
-				elif name_textinput.text == '': name_textinput.background_normal = 'images/textinput_error.png'
-				elif url_textinput.text == '': url_textinput.background_normal = 'images/textinput_error.png'
-				else: root.add_new_station(name_textinput.text, url_textinput.text)
+            font_size: font_size_main
+            on_release:
+                if root.is_add_from_file: root.add_new_station_from_file(drop_file_text.text)
+                elif name_textinput.text == '': name_textinput.background_normal = 'images/textinput_error.png'
+                elif url_textinput.text == '': url_textinput.background_normal = 'images/textinput_error.png'
+                else: root.add_new_station(name_textinput.text, url_textinput.text)
 
 
 <ErrorMessagePopup>:
-	size_hint: (None, None)
-	width: popup_width
-	height: popup_height
-	title: 'Error:'
-	title_size: main_font_size
+    size_hint: (None, None)
+    width: popup_width
+    height: popup_height
+    title: 'Error:'
+    title_size: font_size_main
 
-	BoxLayout:
-		orientation: 'vertical'
-		Label:
-			size_hint: (1.0, 0.7)
-			halign: 'center'
-			valign: 'middle'
-			texture_size: self.size
-			text_size: self.size
-			text: root.error_message
-			font_size: main_font_size
-		Button:
-			size_hint: (0.5, 0.2)
-			pos_hint: {'center_x': 0.5}
-			text: 'Ok'
-			font_size: main_font_size
-			on_release: root.dismiss()
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint: (1.0, 0.7)
+            halign: 'center'
+            valign: 'middle'
+            texture_size: self.size
+            text_size: self.size
+            text: root.error_message
+            font_size: font_size_main
+        HoverButton:
+            size_hint: (0.5, 0.2)
+            pos_hint: {'center_x': 0.5}
+            text: 'Ok'
+            font_size: font_size_main
+            on_release: root.dismiss()
 
 
 <PlayerScreen>:
-	canvas.before:
-		Rectangle:
-			pos: self.pos
-			size: self.size
-			source: 'images/background.jpg'
+    canvas.before:
+        Color:
+            rgb: color_background
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
-	Label:
-		halign: 'center'
-		valign: 'middle'
-		texture_size: self.size
-		text_size: self.size
-		text: 'Your radio stations list is empty!' if len(stations_list.adapter.data)==0 else ''
-		font_size: main_font_size
+    Label:
+        halign: 'center'
+        valign: 'middle'
+        texture_size: self.size
+        text_size: self.size
+        color: color_special_normal
+        text: 'Your radio stations box is empty!' if len(stations_list.adapter.data) == 0 else ''
+        font_name: font_roboto_light
+        font_size: 20
 
-	BoxLayout:
-		orientation: 'vertical'
+    BoxLayout:
+        orientation: 'vertical'
 
-		# add new station button
-		Button:
-			size_hint: (1.0, 0.15)
-			text: 'Add new radio station'
-			font_size: main_font_size
-			on_release: root.open_new_station_popup(args)
+        # add new station button
+        HoverButton:
+            size_hint: (1.0, None)
+            height: button_height
+            text: 'Add new radio station'
+            font_name: font_roboto
+            font_size: font_size_main
+            background_normal: ''
+            background_down: ''
+            background_color: color_button_background_normal
+            on_enter: self.background_color = color_button_background_hover
+            on_leave: self.background_color = color_button_background_normal
+            on_press: self.background_color = color_special_normal
+            on_release:
+                self.background_color = color_button_background_normal
+                root.open_new_station_popup(args)
 
-		# list of stations
-		ListView:
-			id: stations_list
-			adapter: root.list_adapter 
+        # list of stations
+        ListView:
+            id: stations_list
+            adapter: root.list_adapter
 
-		# 'toolbar'
-		BoxLayout:
-			size_hint: (1.0, 0.2)
+        # 'toolbar'
+        BoxLayout:
+            size_hint: (1.0, 0.2)
 
-			# play/stop button
-			Button:
-				size_hint: (None, 1.0) 
-				width: self.height
-				on_release: root.change_state()
+            # play/stop button
+            HoverButton:
+                size_hint: (None, 1.0)
+                width: self.height
+                background_normal: 'resources/images/play_button_normal.png'
+                background_down: 'resources/images/pressed_button.png'
+                on_enter:
+                    if root.is_playing: self.background_normal = 'resources/images/stop_button_hover.png'
+                    else: self.background_normal = 'resources/images/play_button_hover.png'
+                on_leave:
+                    if root.is_playing: self.background_normal = 'resources/images/stop_button_normal.png'
+                    else: self.background_normal = 'resources/images/play_button_normal.png'
+                on_release:
+                    if root.is_playing: self.background_normal = 'resources/images/stop_button_normal.png'
+                    else: self.background_normal = 'resources/images/play_button_normal.png'
+                    root.change_state()
 
-			# cover image
-			Button:
-				size_hint: (None, 1.0) 
-				width: self.height
+            # title
+            Label:
+                id: title_text
+                halign: 'left'
+                valign: 'middle'
+                texture_size: self.size
+                text_size: self.size
+                color: color_special_normal
+                text: ' - '
+                font_name: font_roboto_light
+                font_size: font_size_second
 
-			# title
-			Button:
-				on_release: root.tmp()
-
-			# volume slider
-			Button:
-				size_hint: (None, 1.0) 
-				width: self.height
-
-			# delete station
-			Button:
-				size_hint: (None, 1.0) 
-				width: self.height
+            # volume slider
+            Slider:
+                size_hint: (None, 1.0)
+                width: self.height  * 2
+                min: 0
+                max: 100
+                step: 1
+                value: 50
+                cursor_image: 'resources/images/pressed_button.png'
+                cursor_width: 20
+                cursor_height: 20
+                value_track_color: color_button_background_normal
+                value_track_width: 1
+                on_value: root.change_volume(self.value)
