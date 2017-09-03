@@ -32,17 +32,17 @@ class AddNewStationPopup(Popup):
             self.is_add_from_file = True
             self.ids.drop_file_text.text = file_path.decode('utf-8')
             self.ids.del_drop_file.disabled = False
-            self.ids.name_box.disabled = True
-            self.ids.url_box.disabled = True
+            self.ids.name_box_layout.disabled = True
+            self.ids.url_box_layout.disabled = True
 
     def refresh_popup_content(self, *args):
         self.is_add_from_file = False
         self.ids.drop_file_text.text = 'Drag and drop m3u file here'
         self.ids.del_drop_file.disabled = True
-        self.ids.name_textinput.text = ''
-        self.ids.url_textinput.text = ''
-        self.ids.name_box.disabled = False
-        self.ids.url_box.disabled = False
+        self.ids.name_text_input.text = ''
+        self.ids.url_text_input.text = ''
+        self.ids.name_box_layout.disabled = False
+        self.ids.url_box_layout.disabled = False
 
 
 class ErrorMessagePopup(Popup):

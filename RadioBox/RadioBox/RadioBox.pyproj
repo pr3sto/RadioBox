@@ -60,9 +60,12 @@
     <Content Include="resources\images\play_button_hover.png" />
     <Content Include="resources\images\play_button_normal.png" />
     <Content Include="resources\images\pressed_button.png" />
+    <Content Include="resources\images\remove_button_hover.png" />
+    <Content Include="resources\images\remove_button_normal.png" />
     <Content Include="resources\images\stop_button_hover.png" />
     <Content Include="resources\images\stop_button_normal.png" />
     <Content Include="resources\images\textinput_error.png" />
+    <Content Include="resources\images\textinput_normal.png" />
     <Resource Include="resources\fonts\Roboto Light.ttf">
       <Publish>True</Publish>
     </Resource>
