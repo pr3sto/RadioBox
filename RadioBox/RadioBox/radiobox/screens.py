@@ -34,7 +34,10 @@ class PlayerScreen(FloatLayout):
     def change_station(self, adapter, *args):
         if (adapter.selection):
             self.player.set_station(adapter.selection[0].ids.ctx)
-            Window.set_title('RadioBox - {0}'.format(adapter.selection[0].ids.ctx.name))
+            Window.set_title('RadioBox | {0}'.format(adapter.selection[0].ids.ctx.name))
+        else:
+            self.player.set_station(None)
+            Window.set_title('RadioBox')
 
     def change_state(self):
         if self.player.is_playing():

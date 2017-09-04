@@ -24,35 +24,36 @@
 
 [ListItem@BoxLayout+ListItemButton+HoverBehavior]:
     size_hint: (1.0, None)
-    border: 10, 10, 10, 10
     height: list_item_height
     background_normal: ''
     background_down: ''
-    background_color: main_color_normal
-    deselected_color: main_color_normal
-    selected_color: special_color_normal
-    on_enter: self.background_color = special_color_hover
-    on_leave: self.background_color = main_color_normal
+    background_color: background_color
+    deselected_color: background_color
+    selected_color: main_color_normal
+    on_enter: self.background_color = main_color_hover
+    on_leave:
+        if self.is_selected: self.background_color = main_color_normal
+        else: self.background_color = background_color
 
     BoxLayout:
         orientation: 'horizontal'
 
         BoxLayout:
-            padding: 5
             orientation: 'vertical'
+            padding: 5
+
             Label:
                 halign: 'left'
                 valign: 'middle'
-                texture_size: self.size
                 text_size: self.size
                 text: "{0}. {1}".format(ctx.row_number, ctx.name)
                 font_name: roboto_font
                 font_size: font_size_main
+
             Label:
                 id: url_label
                 halign: 'left'
                 valign: 'middle'
-                texture_size: self.size
                 text_size: self.size
                 text: format(ctx.url)
                 font_name: roboto_light_font
@@ -62,6 +63,7 @@
             size_hint: (None, None)
             height: button_height
             width: self.height
+            pos_hint: {'center_y': 0.5}
             border: (7, 7, 7, 7)
             background_normal: 'resources/images/remove_button_normal.png'
             background_down: 'resources/images/pressed_button.png'
@@ -266,10 +268,9 @@
     Label:
         halign: 'center'
         valign: 'middle'
-        texture_size: self.size
-        text_size: self.size
         color: special_color_normal
-        text: 'Your radio stations box is empty!' if len(stations_list.adapter.data) == 0 else ''
+        text_size: self.size
+        text: 'Your radio stations box is empty!' if len(stations_list_view.adapter.data) == 0 else ''
         font_name: roboto_light_font
         font_size: 20
 
@@ -295,12 +296,20 @@
 
         # list of stations
         ListView:
-            id: stations_list
+            id: stations_list_view
             adapter: root.list_adapter
 
-        # 'toolbar'
+        # toolbar
         BoxLayout:
-            size_hint: (1.0, 0.2)
+            size_hint: (1.0, None)
+            height: button_height
+
+            canvas.before:
+                Color:
+                    rgb: main_color_normal
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
             # play/stop button
             HoverButton:
@@ -326,7 +335,6 @@
                 id: title_text
                 halign: 'left'
                 valign: 'middle'
-                texture_size: self.size
                 text_size: self.size
                 color: special_color_normal
                 text: ' - '
@@ -336,7 +344,7 @@
             # volume slider
             Slider:
                 size_hint: (None, 1.0)
-                width: self.height  * 2
+                width: self.height  * 3
                 min: 0
                 max: 100
                 step: 1
@@ -344,6 +352,8 @@
                 cursor_image: 'resources/images/pressed_button.png'
                 cursor_width: 20
                 cursor_height: 20
-                value_track_color: main_color_normal
-                value_track_width: 1
+                background_width: 20
+                value_track: 'true'
+                value_track_color: special_color_hover
+                value_track_width: 2.5
                 on_value: root.change_volume(self.value)
