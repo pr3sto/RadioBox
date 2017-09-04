@@ -59,9 +59,8 @@ class PlayerScreen(FloatLayout):
         self.player.get_stream_title()
         self.title_update_sheduler.enter(5, 1, self._update_title_loop, ())
 
-    def _show_error(self, stream_name):
-        err_msg = 'Error playing stream \'{0}\''.format(stream_name)
-        ErrorMessagePopup(err_msg).open()
+    def _show_error(self, error_message):
+        ErrorMessagePopup(error_message).open()
 
     def _update_title(self, title):
         self.ids.title_text.text = title

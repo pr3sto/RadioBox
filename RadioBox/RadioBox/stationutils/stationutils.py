@@ -29,8 +29,9 @@ class StationUtils:
         """
 
         # create if not exist
-        if not os.path.exists(StationUtils.radiobox_directory_path):
-            os.makedirs(StationUtils.radiobox_directory_path)
+        if StationUtils.radiobox_directory_path is not None:
+            if not os.path.exists(StationUtils.radiobox_directory_path):
+                os.makedirs(StationUtils.radiobox_directory_path)
         # full path to file
         stations_file_path = os.path.join(StationUtils.radiobox_directory_path, StationUtils.radiobox_stations_save_file_name)
 
@@ -99,4 +100,5 @@ class StationUtils:
                 for station in stations:
                     f.write('#EXTINF:0,{0}\n{1}\n\n'.format(station.name, station.url))
         except:
+            # dont save anuthing if error in stations
             pass
