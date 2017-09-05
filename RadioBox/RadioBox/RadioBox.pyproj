@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="radiobox\radiobox.kv" />
+    <Content Include="resources\images\icon.ico" />
     <Content Include="resources\images\play_button_hover.png" />
     <Content Include="resources\images\play_button_normal.png" />
     <Content Include="resources\images\pressed_button.png" />

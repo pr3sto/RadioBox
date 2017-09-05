@@ -100,5 +100,5 @@ class StationUtils:
                 for station in stations:
                     f.write('#EXTINF:0,{0}\n{1}\n\n'.format(station.name, station.url))
         except:
-            # dont save anuthing if error in stations
+            # dont save anything if error in stations
             pass
