@@ -296,9 +296,11 @@
                 root.open_new_station_popup(args)
 
         # list of stations
-        ListView:
-            id: stations_list_view
-            adapter: root.list_adapter
+        BoxLayout:
+            padding: (0,1,0,1)
+            ListView:
+                id: stations_list_view
+                adapter: root.list_adapter
 
         # toolbar
         BoxLayout:
