@@ -20,10 +20,11 @@ class HoverBehavior(object):
     def __init__(self, **kwargs):
         self.register_event_type('on_enter')
         self.register_event_type('on_leave')
-        Window.bind(mouse_pos=self.on_mouse_pos)
+        Window.bind(mouse_pos=self._on_mouse_pos)
+        Window.bind(on_cursor_leave=self._on_cursor_leave)
         super(HoverBehavior, self).__init__(**kwargs)
 
-    def on_mouse_pos(self, *args):
+    def _on_mouse_pos(self, *args):
         if not self.get_root_window():
             return # do proceed if I'm not displayed <=> If have no parent
         pos = args[1]
@@ -37,6 +38,11 @@ class HoverBehavior(object):
         if inside:
             self.dispatch('on_enter')
         else:
+            self.dispatch('on_leave')
+
+    def _on_cursor_leave(self, *args):
+        if (self.hovered):
+            self.hovered = False
             self.dispatch('on_leave')
 
     def on_enter(self):
