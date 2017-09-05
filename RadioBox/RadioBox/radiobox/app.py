@@ -11,6 +11,7 @@ class RadioBoxApp(App):
     """Main application class."""
     def build(self):
         self.title = 'RadioBox'
+        self.icon = 'resources/images/icon.ico'
 
         # set app directory path
         StationUtils.radiobox_directory_path = self.user_data_dir
