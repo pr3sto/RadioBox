@@ -26,6 +26,8 @@ class PlayerScreen(FloatLayout):
 
         self.title_update_sheduler = sched.scheduler(time.time, time.sleep)
 
+        Window.bind(on_request_close=self.stop_player)
+
     def open_new_station_popup(self, *args):
         if self.add_new_station_popup is None:
             self.add_new_station_popup = AddNewStationPopup(self.list_adapter)
@@ -54,6 +56,12 @@ class PlayerScreen(FloatLayout):
     def update_title_launch(self):
         self.title_update_sheduler.enter(5, 1, self._update_title_loop, ())
         self.title_update_sheduler.run()
+
+    def stop_player(self, *args):
+        if self.player.is_playing():
+            self.player.stop()
+            for event in self.title_update_sheduler.queue:
+                self.title_update_sheduler.cancel(event)
 
     def _update_title_loop(self):
         self.player.get_stream_title()

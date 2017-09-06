@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.core.window import Window
+from kivy.config import Config
 from kivy.adapters.listadapter import ListAdapter
 
 from stationutils import StationUtils
@@ -10,6 +11,8 @@ from screens import PlayerScreen
 class RadioBoxApp(App):
     """Main application class."""
     def build(self):
+        Config.set('kivy', 'exit_on_escape', 0)
+
         self.title = 'RadioBox'
         self.icon = 'resources/images/icon.ico'
 
