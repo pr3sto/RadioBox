@@ -19,7 +19,7 @@ class AddNewStationPopup(Popup):
         self.refresh_popup_content()
 
     def add_new_station(self, name, url, *args):
-        self.list_adapter.data.append(Station(name, url))
+        self.list_adapter.data.append(Station(name.encode('utf8'), url.encode('utf8')))
         self.dismiss()
 
     def add_new_station_from_file(self, file_path, *args):
