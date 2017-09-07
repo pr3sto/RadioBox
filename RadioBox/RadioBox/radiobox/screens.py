@@ -78,3 +78,4 @@ class PlayerScreen(FloatLayout):
             self.ids.play_button.background_normal = 'resources/images/stop_button_normal.png'
         else:
             self.ids.play_button.background_normal = 'resources/images/play_button_normal.png'
+            self.ids.title_text.text = ' - '
