@@ -60,13 +60,13 @@ class Player:
                 metaint = int(icy_metaint_header)
                 read_buffer = metaint+255
                 content = response.read(read_buffer)
-                title = content[metaint:].split("'")[1].encode('utf8')
+                title = content[metaint:].split("'")[1]
 
                 if self.title_recieved_callback is not None:
                     self.title_recieved_callback(title)
             elif icy_description_header is not None:
                 if self.title_recieved_callback is not None:
-                    self.title_recieved_callback(icy_description_header.encode('utf8'))
+                    self.title_recieved_callback(icy_description_header)
             else:
                 if self.title_recieved_callback is not None:
                     self.title_recieved_callback(' - ')
